@@ -52,6 +52,7 @@ Use `references/state-notes.md` when updating continuity files.
 4. Add to `docs/DECISIONS.md` only for durable design, stack, data, workflow, or operational decisions.
 5. Verify changed note files contain only the minimum state needed to resume.
 6. In the final report, include changed files, verification run, remaining blockers, and next action when useful.
+7. When reporting resume instructions, point the next session to `docs/START_HERE.md` first, then `docs/CURRENT_STATE.md`.
 
 ## Output Rules
 
