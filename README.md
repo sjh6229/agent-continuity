@@ -4,7 +4,7 @@ Privacy-first continuity notes for long-running AI coding sessions.
 
 ![Agent Continuity social preview](assets/social-preview.png)
 
-Agent Continuity is a small agent skill for projects that span more than one session. It gives an AI coding agent a lightweight way to resume work from project-local notes without turning those notes into a private memory dump.
+Agent Continuity is a small agent skill for projects that span more than one session. It gives an AI coding agent a lightweight way to initialize, resume, and close out work from project-local notes without turning those notes into a private memory dump.
 
 The goal is simple: keep enough state to continue the work, and nothing more.
 
@@ -15,11 +15,24 @@ Long-running agent work usually fails in one of two ways:
 - The next session has no context and repeats discovery work.
 - The project grows a "memory" folder full of private paths, raw logs, chat fragments, and stale personal notes.
 
-Agent Continuity uses three short files instead:
+Agent Continuity uses four short files instead:
 
+- `docs/START_HERE.md` for the stable entry point
 - `docs/CURRENT_STATE.md` for the current snapshot
 - `docs/PROGRESS.md` for append-only work chunks
 - `docs/DECISIONS.md` for durable project decisions
+
+## What It Creates
+
+When starting a new long-running project, the skill asks what work should be tracked and creates a compact `docs/` continuity set:
+
+```text
+docs/
+  START_HERE.md
+  CURRENT_STATE.md
+  PROGRESS.md
+  DECISIONS.md
+```
 
 ## Install
 
@@ -35,33 +48,42 @@ On macOS or Linux:
 cp -R ./skills/agent-continuity ~/.codex/skills/agent-continuity
 ```
 
-## Use
+## Quick Start
 
-Ask your agent to use the skill when work needs to resume, continue later, hand off, or close out.
+Set up continuity notes for a project:
+
+```text
+Use $agent-continuity to set up continuity notes for this project.
+```
+
+Resume existing work:
 
 ```text
 Use $agent-continuity to resume this project.
 ```
 
+Close out a session:
+
 ```text
 Use $agent-continuity to close out this session and leave the next actions clear.
 ```
-
-The legacy keyword `longwork` is included in the trigger description so existing habits still work.
 
 ## Workflow
 
 ```mermaid
 flowchart LR
-    A["Start or resume"] --> B["Read project instructions"]
-    B --> C["Read continuity notes"]
-    C --> D["State success criteria"]
-    D --> E["Do scoped work"]
-    E --> F{"State changed?"}
-    F -- "No" --> G["Skip note updates"]
-    F -- "Yes" --> H["Update current state"]
-    H --> I["Append progress"]
-    I --> J["Record durable decisions"]
+    A["Initialize or resume"] --> B["Identify project folder"]
+    B --> C{"Continuity notes exist?"}
+    C -- "No" --> D["Ask what work to track"]
+    D --> E["Create docs/ notes"]
+    C -- "Yes" --> F["Read existing notes"]
+    E --> G["Do scoped work"]
+    F --> G
+    G --> H{"State changed?"}
+    H -- "No" --> I["Skip note updates"]
+    H -- "Yes" --> J["Update snapshot"]
+    J --> K["Append progress"]
+    K --> L["Record durable decisions"]
 ```
 
 ## Privacy Model
@@ -105,6 +127,8 @@ scripts/privacy-scan.py
 
 The installable skill stays small. Public documentation, examples, and validation scripts live at the repository level.
 
+For positioning against other approaches, see [docs/comparison.md](docs/comparison.md).
+
 ## Privacy Scan
 
 Run the scanner before publishing or tagging a release.
@@ -124,10 +148,6 @@ On PowerShell:
 ```powershell
 python scripts/privacy-scan.py . --term $env:PRIVATE_PROJECT_TERM --term $env:PRIVATE_CLIENT_TERM
 ```
-
-## GitHub Topics
-
-`agent-skills`, `codex`, `claude-code`, `ai-agents`, `session-continuity`, `handoff`, `privacy-first`
 
 ## License
 

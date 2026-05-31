@@ -2,6 +2,28 @@
 
 Use these templates when creating or updating project-local continuity notes.
 
+## START_HERE.md
+
+Create this file when setting up continuity notes for the first time. Keep it stable and short so future sessions know which notes to read first.
+
+```markdown
+# Start Here
+
+## Project
+- ...
+
+## How To Resume
+- Read `docs/CURRENT_STATE.md`.
+- Check recent entries in `docs/PROGRESS.md` only when more context is needed.
+- Check `docs/DECISIONS.md` before changing architecture, workflow, data model, or operational policy.
+
+## First Success Criterion
+- ...
+
+## Notes
+- ...
+```
+
 ## CURRENT_STATE.md
 
 Keep this file short. It should describe the current state, not the full history.

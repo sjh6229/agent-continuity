@@ -1,11 +1,24 @@
 ---
 name: agent-continuity
-description: Use when resuming, continuing, handing off, or closing a long-running AI coding project across sessions, especially for resume work, continue later, handoff, next session, long-running project, session state, continuity notes, docs/START_HERE.md, docs/CURRENT_STATE.md, docs/PROGRESS.md, docs/DECISIONS.md, or the legacy keyword longwork.
+description: Use when initializing, resuming, continuing, handing off, or closing a long-running AI coding project across sessions, especially for initialize continuity notes, set up handoff notes, create docs, resume work, continue later, handoff, next session, long-running project, session state, continuity notes, docs/START_HERE.md, docs/CURRENT_STATE.md, docs/PROGRESS.md, docs/DECISIONS.md, or the legacy keyword longwork.
 ---
 
 # Agent Continuity
 
 Use this skill to keep long-running project work resumable through short, privacy-first continuity notes.
+
+## Initialize Workflow
+
+Use this workflow when a user wants to start a long-running project, set up continuity notes, create handoff docs, or prepare work that will continue across sessions.
+
+1. Identify the actual target project folder. Do not create continuity notes in a scratch directory unless the scratch directory is the user's actual project.
+2. Read project instructions first, especially `AGENTS.md`, `CLAUDE.md`, or nested instruction files.
+3. If the target folder or tracked work is unclear, ask one concise question before creating files: `What long-running work should these notes track, and what is the first success criterion?`
+4. If `docs/` or continuity files already exist, do not overwrite them. Read existing notes, then create only the missing files that are needed.
+5. Create or update `docs/START_HERE.md`, `docs/CURRENT_STATE.md`, `docs/PROGRESS.md`, and `docs/DECISIONS.md` using `references/state-notes.md`.
+6. Keep initial notes neutral and minimal when details are not yet known. Do not invent project history, decisions, blockers, or verification results.
+7. Verify the created files exist and contain only the minimum state needed to resume.
+8. Report the created files and the first recommended next action.
 
 ## Start Workflow
 
