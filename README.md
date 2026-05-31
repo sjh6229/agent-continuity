@@ -2,7 +2,7 @@
 
 Privacy-first continuity notes for long-running AI coding sessions.
 
-![Agent Continuity social preview](assets/social-preview.png)
+![Agent Continuity social preview](assets/social-preview.webp)
 
 Agent Continuity is a small agent skill for projects that span more than one session. It gives an AI coding agent a lightweight way to initialize, resume, and close out work from project-local notes without turning those notes into a private memory dump.
 
