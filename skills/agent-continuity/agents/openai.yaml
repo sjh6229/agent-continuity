@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Continuity"
+  short_description: "Keep long-running coding sessions resumable with privacy-first notes."
+  default_prompt: "Use $agent-continuity to resume or close out this long-running project."
